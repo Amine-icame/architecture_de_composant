@@ -1,0 +1,1 @@
+# architecture_de_composant
