@@ -24,7 +24,7 @@ Ce dépôt contient l'ensemble des travaux pratiques (TP) réalisés dans le cad
 Le projet est divisé en 4 parties distinctes, chacune abordant un concept clé de l'architecture logicielle :
 
 ### 1️⃣ TP 1 : Inversion de Contrôle (IOC) & Injection de Dépendances
-*   **Dossier :** `TPIOC` *(ou le nom exact de ton dossier)*
+*   **Dossier :** `TPIOC`
 *   **Description :** Compréhension du couplage faible.
 *   **Concepts clés :**
     *   Implémentation du pattern IOC.
