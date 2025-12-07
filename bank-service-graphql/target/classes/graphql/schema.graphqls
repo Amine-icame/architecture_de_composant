@@ -1,0 +1,87 @@
+type Query {
+    customers: [CustomerDto]
+    customerByIdentity(identity: String): CustomerDto
+    bankAccounts: [BankAccountDto]
+    bankAccountByRib(rib: String): BankAccountDto
+}
+
+type Mutation {
+    createCustomer(dto: AddCustomerRequest): AddCustomerResponse
+    addBankAccount(dto: AddBankAccountRequest): AddBankAccountResponse
+    addWirerTransfer(dto: AddWirerTransferRequest): AddWiredTransferResponse
+    deleteCustomer(identityRef: String): String
+}
+
+type CustomerDto {
+    username: String
+    identityRef: String
+    firstname: String
+    lastname: String
+    bankAccounts: [BankAccountDto]
+}
+
+type BankAccountDto {
+    rib: String
+    amount: Float
+    createdAt: String
+    accountStatus: AccountStatus
+    customer: CustomerDto
+}
+
+type AddCustomerResponse {
+    message: String
+    username: String
+    identityRef: String
+}
+
+# --- C'est probablement ce bloc qui vous manque ---
+type AddBankAccountResponse {
+    message: String
+    rib: String
+    amount: Float
+    createdAt: String
+    accountStatus: AccountStatus
+    customer: CustomerDto
+}
+# ------------------------------------------------
+
+type TransactionDto {
+    createdAt: String
+    transactionType: TransactionType
+    amount: Float
+    bankAccount: BankAccountDto
+    user: UserDto
+}
+
+type UserDto {
+    username: String
+}
+
+type AddWiredTransferResponse {
+    message: String
+    transactionFrom: TransactionDto
+    transactionTo: TransactionDto
+}
+
+input AddCustomerRequest {
+    username: String
+    identityRef: String
+    firstname: String
+    lastname: String
+}
+
+input AddBankAccountRequest {
+    rib: String
+    amount: Float
+    customerIdentityRef: String
+}
+
+input AddWirerTransferRequest {
+    ribFrom: String
+    ribTo: String
+    amount: Float
+    username: String
+}
+
+enum AccountStatus { OPENED, CLOSED, BLOCKED }
+enum TransactionType { CREDIT, DEBIT }

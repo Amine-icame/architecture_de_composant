@@ -1,0 +1,30 @@
+package com.example.bank_service_graphql.common;
+
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+@Component
+@Data
+public class CommonTools {
+
+    // Cette valeur est récupérée depuis le fichier application.properties
+    @Value("${graphql.date.format}")
+    private String dateFormat;
+
+    // Convertit une Date Java en String
+    public String dateToString(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        return formatter.format(date);
+    }
+
+    // Convertit un String en Date Java
+    public Date stringToDate(String date) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        return formatter.parse(date);
+    }
+}
